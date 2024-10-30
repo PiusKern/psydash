@@ -1,11 +1,14 @@
-# PsyDash
+<h1>
+  <img src="assets/icon/icon.png" width="70" align="center">
+  PsyDash
+</h1>
 A dashboard app that helps you track and visualize progress across psychotherapy sessions.
 
 ## Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/psydash.git
+git clone https://github.com/piuskern/psydash.git
 cd psydash
 ```
 
