@@ -1,0 +1,291 @@
+{
+  "client": [
+    {
+      "ID": "Melora",
+      "Age": 15,
+      "Gender": "Female",
+      "Focus": "Depression, Eating",
+      "Notes": ""
+    }
+  ],
+  "measures": [
+    {
+      "Name": "BDI-II",
+      "Type": "Scale",
+      "Min": 0,
+      "Max": 63,
+      "Rater": "Self",
+      "Description": "Beck Depression Inventory-II. >14 mild, >20 moderate, >29 depression.",
+      "SelectMeasure": false,
+      "SelectRater": false,
+      "Color": "#1f77b4"
+    },
+    {
+      "Name": "CDRS-R",
+      "Type": "Scale",
+      "Min": 17,
+      "Max": 113,
+      "Rater": "Therapist",
+      "Description": "Children's Depression Rating Scale-Revised. >31 mild, >41 moderate, >55 severe.",
+      "SelectMeasure": false,
+      "SelectRater": false,
+      "Color": "#ff7f0e"
+    },
+    {
+      "Name": "EDI-3",
+      "Type": "Scale",
+      "Min": 0,
+      "Max": 100,
+      "Rater": "Self",
+      "Description": "Eating Disorder Inventory 3. T-Scores. Cut-off: 65. ",
+      "SelectMeasure": false,
+      "SelectRater": false,
+      "Color": "#2ca02c"
+    },
+    {
+      "Name": "Mood",
+      "Type": "Scale",
+      "Min": 0,
+      "Max": 10,
+      "Rater": "Self",
+      "Description": "How would you rate your mood over the past days?",
+      "SelectMeasure": true,
+      "SelectRater": false,
+      "Color": "#d62728"
+    },
+    {
+      "Name": "Sleep quality",
+      "Type": "Scale",
+      "Min": 0,
+      "Max": 10,
+      "Rater": "Self",
+      "Description": "How would you rate your sleep over the past days?",
+      "SelectMeasure": true,
+      "SelectRater": false,
+      "Color": "#9467bd"
+    },
+    {
+      "Name": "Binge eating episodes",
+      "Type": "Count",
+      "Min": 0,
+      "Max": null,
+      "Rater": "Self",
+      "Description": "How many times did you experience episodes where you felt you couldn't control your eating and ate much more than you planned to?",
+      "SelectMeasure": true,
+      "SelectRater": false,
+      "Color": "#8c564b"
+    },
+    {
+      "Name": "Social activity",
+      "Type": "Count",
+      "Min": 0,
+      "Max": null,
+      "Rater": "Caregiver",
+      "Description": "How many social activities did Melora engage in the past week?",
+      "SelectMeasure": true,
+      "SelectRater": false,
+      "Color": "#e377c2"
+    },
+    {
+      "Name": "Peer Interaction",
+      "Type": "Scale",
+      "Min": 0,
+      "Max": 10,
+      "Rater": "Educator",
+      "Description": "How would you rate Melora's social interaction with classmates last week?",
+      "SelectMeasure": false,
+      "SelectRater": false,
+      "Color": "#7f7f7f"
+    }
+  ],
+  "sessions": [
+    {
+      "session_number": 1,
+      "session_date": "2024-04-16",
+      "BDI-II": 32,
+      "CDRS-R": 67,
+      "EDI-3": 61,
+      "Mood": 3,
+      "Sleep quality": 2,
+      "Peer Interaction": 3,
+      "Binge eating episodes": 5,
+      "Social activity": 0,
+      "Relationship Building": true,
+      "Psychoeducation": false,
+      "Behavioural Activation": false,
+      "Emotion Regulation": false,
+      "Cognitive Restructuring": false,
+      "Relapse Prevention": false
+    },
+    {
+      "BDI-II": null,
+      "CDRS-R": null,
+      "EDI-3": null,
+      "Mood": 3,
+      "Sleep quality": 3,
+      "Binge eating episodes": 4,
+      "Social activity": 1,
+      "Peer Interaction": 3,
+      "session_number": 2,
+      "session_date": "2024-04-22",
+      "Relationship Building": true,
+      "Psychoeducation": true,
+      "Behavioural Activation": false,
+      "Emotion Regulation": false,
+      "Cognitive Restructuring": false,
+      "Relapse Prevention": false
+    },
+    {
+      "BDI-II": null,
+      "CDRS-R": null,
+      "EDI-3": null,
+      "Mood": 4,
+      "Sleep quality": 6,
+      "Binge eating episodes": 4,
+      "Social activity": 1,
+      "Peer Interaction": 4,
+      "session_number": 3,
+      "session_date": "2024-04-25",
+      "Relationship Building": false,
+      "Psychoeducation": true,
+      "Behavioural Activation": true,
+      "Emotion Regulation": true,
+      "Cognitive Restructuring": false,
+      "Relapse Prevention": false
+    },
+    {
+      "BDI-II": null,
+      "CDRS-R": null,
+      "EDI-3": null,
+      "Mood": 4,
+      "Sleep quality": 5,
+      "Binge eating episodes": 3,
+      "Social activity": 1,
+      "Peer Interaction": 4,
+      "session_number": 4,
+      "session_date": "2024-04-30",
+      "Relationship Building": false,
+      "Psychoeducation": false,
+      "Behavioural Activation": true,
+      "Emotion Regulation": true,
+      "Cognitive Restructuring": true,
+      "Relapse Prevention": false
+    },
+    {
+      "BDI-II": null,
+      "CDRS-R": null,
+      "EDI-3": null,
+      "Mood": 5,
+      "Sleep quality": 6,
+      "Binge eating episodes": 3,
+      "Social activity": 2,
+      "Peer Interaction": 5,
+      "session_number": 5,
+      "session_date": "2024-05-03",
+      "Relationship Building": false,
+      "Psychoeducation": false,
+      "Behavioural Activation": false,
+      "Emotion Regulation": false,
+      "Cognitive Restructuring": true,
+      "Relapse Prevention": false
+    },
+    {
+      "BDI-II": null,
+      "CDRS-R": null,
+      "EDI-3": null,
+      "Mood": 4,
+      "Sleep quality": 3,
+      "Binge eating episodes": 4,
+      "Social activity": 1,
+      "Peer Interaction": 4,
+      "session_number": 6,
+      "session_date": "2024-05-09",
+      "Relationship Building": false,
+      "Psychoeducation": false,
+      "Behavioural Activation": false,
+      "Emotion Regulation": true,
+      "Cognitive Restructuring": true,
+      "Relapse Prevention": false
+    },
+    {
+      "BDI-II": null,
+      "CDRS-R": null,
+      "EDI-3": null,
+      "Mood": 6,
+      "Sleep quality": 9,
+      "Binge eating episodes": 2,
+      "Social activity": 3,
+      "Peer Interaction": 5,
+      "session_number": 7,
+      "session_date": "2024-05-15",
+      "Relationship Building": false,
+      "Psychoeducation": false,
+      "Behavioural Activation": true,
+      "Emotion Regulation": true,
+      "Cognitive Restructuring": false,
+      "Relapse Prevention": false
+    },
+    {
+      "BDI-II": 25,
+      "CDRS-R": 49,
+      "EDI-3": 54,
+      "Mood": 7,
+      "Sleep quality": 7,
+      "Binge eating episodes": 1,
+      "Social activity": 3,
+      "Peer Interaction": 7,
+      "Relationship Building": false,
+      "Psychoeducation": false,
+      "Behavioural Activation": false,
+      "Emotion Regulation": false,
+      "Cognitive Restructuring": false,
+      "Relapse Prevention": true,
+      "session_number": 8,
+      "session_date": "2024-05-20"
+    },
+    {
+      "BDI-II": null,
+      "CDRS-R": null,
+      "EDI-3": null,
+      "Mood": null,
+      "Sleep quality": null,
+      "Binge eating episodes": null,
+      "Social activity": null,
+      "Peer Interaction": null,
+      "Relationship Building": false,
+      "Psychoeducation": false,
+      "Behavioural Activation": false,
+      "Emotion Regulation": false,
+      "Cognitive Restructuring": false,
+      "Relapse Prevention": true,
+      "session_number": 9,
+      "session_date": "2024-05-21"
+    }
+  ],
+  "practices": [
+    {
+      "Name": "Relationship Building",
+      "Description": "Creating a safe and accepting environment. Establishing therapeutic alliance."
+    },
+    {
+      "Name": "Psychoeducation",
+      "Description": "Focus on the connection between thoughts, feelings and behaviours."
+    },
+    {
+      "Name": "Behavioural Activation",
+      "Description": "Planning and implementing pleasant activities. Gradual increase in social engagement."
+    },
+    {
+      "Name": "Emotion Regulation",
+      "Description": "Learning to identify emotions. Developing healthy coping strategies."
+    },
+    {
+      "Name": "Cognitive Restructuring",
+      "Description": "Identifying and challenging negative thought patterns about self and body."
+    },
+    {
+      "Name": "Relapse Prevention",
+      "Description": "Creating maintenance plans. Prepare emergency response strategies."
+    }
+  ]
+}
