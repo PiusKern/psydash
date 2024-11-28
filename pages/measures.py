@@ -16,6 +16,7 @@ ag_grid_config = {
         'singleClickEdit': True,
         'rowDragManaged': True,
         'rowDragEntireRow': True,
+        'suppressScrollOnNewData': True,
     },
     'defaultColDef': {
         'filter': False,

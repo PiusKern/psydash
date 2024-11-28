@@ -179,6 +179,16 @@ def load_data(contents):
         sessions_data = data.get('sessions', [])
         practices_data = data.get('practices', [])
 
+        # Clean measures data
+        for measure in measures_data:
+            measure['SelectMeasure'] = bool(measure.get('SelectMeasure', False))
+            measure['SelectRater'] = bool(measure.get('SelectRater', False))
+        # Clean session data
+        for session in sessions_data:
+            for practice in practices_data:
+                if practice['Name'] != 'New Practice':
+                    session[practice['Name']] = bool(session.get(practice['Name'], False))
+
         alert_message = 'Record uploaded.'
         show_alert = True
         alert_color = 'success'

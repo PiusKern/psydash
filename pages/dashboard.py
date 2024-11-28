@@ -7,7 +7,8 @@ from dash_iconify import DashIconify
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from globals import APP_TITLE, PAGE_HEADER_STYLE, get_rater_selection, HELP_TEXT_DASHBOARD, create_help_button
+from globals import APP_TITLE, PAGE_HEADER_STYLE, HELP_TEXT_DASHBOARD
+from globals import get_rater_selection, create_help_button, encode_text, decode_text
 
 dash.register_page(__name__, name='Dashboard', order=5, title=APP_TITLE)
 
@@ -101,8 +102,9 @@ def create_measure_switches(measures_data):
     
     switches = []
     for measure in measures_data:
+        encoded_name = encode_text(measure['Name'])
         switch = dmc.Switch(
-            id={'type': 'measure-switch', 'index': measure['Name']},
+            id={'type': 'measure-switch', 'index': encoded_name},
             label=measure['Name'],
             size='sm',
             color=measure['Color'],
@@ -137,9 +139,6 @@ def create_rater_switches(measures_data):
         switches.append(switch)
     return html.Div([html.Div('Rater', className='mb-2'), *switches])
 
-from dash import callback, Input, Output, State, ctx
-from dash.exceptions import PreventUpdate
-
 @callback(
     Output('measures-store', 'data', allow_duplicate=True),
     Input({'type': 'rater-switch', 'index': ALL}, 'checked'),
@@ -158,6 +157,9 @@ def handle_switch_changes(rater_states, measure_states, rater_ids, measure_ids, 
     trigger_type = trigger.get('type')
     trigger_index = trigger.get('index')
     trigger_value = ctx.triggered[0]['value']
+
+    if trigger_index:
+        trigger_index = decode_text(trigger_index)
 
     rater_selection = get_rater_selection(measures_data)
     measures_data_updated = []

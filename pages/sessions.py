@@ -20,6 +20,7 @@ ag_grid_config = {
         'suppressRowClickSelection': True,
         'singleClickEdit': True,
         'tooltipShowDelay': 500,
+        'suppressScrollOnNewData': True,
     },
     'defaultColDef': {
         'filter': False,
@@ -93,7 +94,10 @@ def update_sessions(add_clicks, delete_clicks, cell_changed, rows, selected_rows
             updated_sessions = add_new_session(updated_sessions, columnDefs, practices_data)
     elif trigger_id == 'sessions-grid' and cell_changed:
         updated_sessions, alert = validate_and_update_cell(updated_sessions, cell_changed, measures_data, practices_data)
-
+        
+        if not alert['show']:
+            return updated_sessions, dash.no_update, columnDefs, alert['message'], alert['show']
+    
     return updated_sessions, updated_sessions, columnDefs, alert['message'], alert['show']
 
 def generate_column_defs(measures_data, practices_data):

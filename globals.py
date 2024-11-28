@@ -194,3 +194,10 @@ def get_rater_selection(measures_data):
     rater_selection = dict(sorted(rater_selection.items()))
 
     return rater_selection
+
+# Encode and decode text strings to handle umlauts and other special characters
+from urllib.parse import quote, unquote
+def encode_text(text):
+    return quote(text)
+def decode_text(text):
+    return unquote(text)
