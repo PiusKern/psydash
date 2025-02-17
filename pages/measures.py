@@ -167,13 +167,15 @@ def update_cell(cell_changed, rows, sessions_data):
         updated_rows = handle_rater_change(index, new_value, updated_rows)
     elif column in ['Min', 'Max']:
         updated_rows, alert = handle_min_max_change(index, column, old_value, new_value, updated_rows, sessions_data)
+        if alert['show']:
+            # If validation failed, return immediately to prevent invalid value from being stored
+            return updated_rows, alert, sessions_data
     
-    # Only update the value if it's not the Name column (which is handled separately)
-    if column != 'Name':
+    # Only update the value if validation passed
+    if not alert['show']:
         updated_rows[index][column] = new_value
     
     return updated_rows, alert, sessions_data
-
 def handle_name_change(index, old_value, new_value, rows, sessions_data):
     alert = {'message': '', 'show': False}
 
@@ -243,33 +245,55 @@ def handle_rater_change(index, new_value, rows):
 def handle_min_max_change(index, column, old_value, new_value, rows, sessions_data):
     '''Handles validation for changes in 'Min' and 'Max' columns.'''
     alert = {'message': '', 'show': False}
-
-    # If invalid input
-    if not new_value and not is_valid_number(new_value):
+    
+    # If new_value is None or empty string, keep old value
+    if new_value is None or new_value == '':
         rows[index][column] = old_value
         alert['message'] = f'Invalid input for {column}. Please enter a valid number and use dots for decimals.'
         alert['show'] = True
+        return rows, alert
 
+    # Check if new_value is a valid number
+    if not is_valid_number(new_value):
+        rows[index][column] = old_value
+        alert['message'] = f'Invalid input for {column}. Please enter a valid number and use dots for decimals.'
+        alert['show'] = True
+        return rows, alert
+
+    # Convert to float for comparison
+    new_value_float = float(new_value)
+    
     # Specific validations for 'Count' type
-    elif rows[index]['Type'] == 'Count':
+    if rows[index]['Type'] == 'Count':
         rows[index][column] = old_value
         alert['message'] = f'Min and Max are fixed for measures of Type Count.'
         alert['show'] = True
+        return rows, alert
     
-    # Check for valid range between 'Min' and 'Max'
-    elif column == 'Min' and float(new_value) >= float(rows[index]['Max']):
-        rows[index][column] = old_value
-        alert['message'] = 'Min must be smaller than Max.'
-        alert['show'] = True
-    elif column == 'Max' and float(new_value) <= float(rows[index]['Min']):
-        rows[index][column] = old_value
-        alert['message'] = 'Max must be larger than Min.'
-        alert['show'] = True
+    # Get the other value (Min or Max) for comparison
+    other_column = 'Max' if column == 'Min' else 'Min'
+    other_value = rows[index][other_column]
     
-    # Update session data if out of range
-    else:
-        rows[index][column] = new_value
-        alert = update_sessions_on_out_of_range(index, rows, sessions_data)
+    if other_value is not None:
+        other_value_float = float(other_value)
+        
+        # Check for valid range between 'Min' and 'Max'
+        if column == 'Min' and new_value_float >= other_value_float:
+            rows[index][column] = old_value
+            alert['message'] = 'Min must be smaller than Max.'
+            alert['show'] = True
+            return rows, alert
+        elif column == 'Max' and new_value_float <= other_value_float:
+            rows[index][column] = old_value
+            alert['message'] = 'Max must be larger than Min.'
+            alert['show'] = True
+            return rows, alert
+    
+    # If we get here, the new value is valid
+    rows[index][column] = new_value_float  # Store as float instead of string
+    
+    # Check if any session data needs updating
+    alert = update_sessions_on_out_of_range(index, rows, sessions_data)
     
     return rows, alert
 
@@ -290,11 +314,24 @@ def update_sessions_on_out_of_range(index, rows, sessions_data):
     return alert
 
 def is_valid_number(value, allow_zero=True):
-    if not value and value != 0:
+    '''Enhanced number validation function'''
+    if value is None:
         return False
+    
+    # Handle string input
+    if isinstance(value, str):
+        # Remove whitespace
+        value = value.strip()
+        # Check if empty after stripping
+        if not value:
+            return False
+        
     try:
         num = float(value)
-        return True if allow_zero else num != 0
+        # Check if it's a valid number (not infinity or NaN)
+        if not (isinstance(num, (int, float)) and (allow_zero or num != 0)):
+            return False
+        return True
     except (ValueError, TypeError):
         return False
 
