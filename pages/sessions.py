@@ -21,6 +21,7 @@ ag_grid_config = {
         'singleClickEdit': True,
         'tooltipShowDelay': 500,
         'suppressScrollOnNewData': True,
+        'suppressFieldDotNotation': True
     },
     'defaultColDef': {
         'filter': False,
